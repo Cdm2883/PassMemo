@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.buildTypeOf
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -47,7 +46,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(project(":shared"))
+            implementation(projects.shared)
         }
         
         androidMain.dependencies {

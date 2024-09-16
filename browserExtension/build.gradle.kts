@@ -11,7 +11,7 @@ kotlin {
 
     sourceSets {
         jsMain.dependencies {
-            implementation(project(":shared"))
+            implementation(projects.shared)
         }
     }
 }
