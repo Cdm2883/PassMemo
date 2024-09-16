@@ -40,23 +40,36 @@ kotlin {
     jvm("desktop")
     
     sourceSets {
-        val desktopMain by getting
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            implementation(project(":shared"))
+        }
         
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(project(":shared"))
+
+        // Material Design
+        val materialMain by creating
+        materialMain.dependsOn(commonMain.get())
+        androidMain.get().dependsOn(materialMain)
+        wasmJsMain.get().dependsOn(materialMain)
+        materialMain.dependencies {
+            implementation(compose.material3)
         }
+
+        // Fluent Design
+        val desktopMain by getting
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.konyaco.fluent)
+            implementation(libs.konyaco.fluent.icons.extended)
+            implementation(libs.mayakapps.compose.window.styler)
         }
     }
 }

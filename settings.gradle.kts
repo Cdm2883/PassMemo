@@ -25,6 +25,7 @@ dependencyResolutionManagement {
         maven("https://mirrors.huaweicloud.com/repository/maven/")
         maven("https://maven.aliyun.com/repository/public")
         maven("https://maven.aliyun.com/repository/google")
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
