@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.buildTypeOf
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -95,8 +96,10 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-android-rules.pro")
         }
     }
     compileOptions {
@@ -119,6 +122,14 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "vip.cdms.passmemo"
             packageVersion = "1.0.0"
+        }
+
+        buildTypes.release.proguard {
+            version.set("7.5.0")
+            obfuscate.set(true)
+            optimize.set(true)
+            joinOutputJars.set(true)
+            configurationFiles.from(project.file("compose-desktop.pro"))
         }
     }
 }
