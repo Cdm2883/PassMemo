@@ -22,10 +22,12 @@ pluginManagement {
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     repositories {
-        maven("https://mirrors.huaweicloud.com/repository/maven/")
-        maven("https://maven.aliyun.com/repository/public")
-        maven("https://maven.aliyun.com/repository/google")
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+        val runningOnGithubActions = System.getenv("GITHUB_ACTIONS") == "true"
+        if (!runningOnGithubActions) {
+            maven("https://mirrors.huaweicloud.com/repository/maven/")
+            maven("https://maven.aliyun.com/repository/public")
+            maven("https://maven.aliyun.com/repository/google")
+        }
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
@@ -34,6 +36,7 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
 }
 

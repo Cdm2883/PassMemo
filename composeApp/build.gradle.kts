@@ -100,6 +100,11 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-android-rules.pro")
         }
+        create("preview") {
+            initWith(getByName("release"))
+            versionNameSuffix = "-preview"
+            applicationIdSuffix = ".preview"
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
