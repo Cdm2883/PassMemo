@@ -8,6 +8,8 @@ on:
       - 'composeApp/src/desktopMain/**'
       - 'composeApp/src/wasmJsMain/**'
       - 'composeApp/compose-desktop.pro'
+      - '.gitignore'
+      - 'README.md'
 
 jobs:
   build:

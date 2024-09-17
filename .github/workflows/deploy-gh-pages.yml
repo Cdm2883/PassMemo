@@ -3,6 +3,14 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - 'browserExtension/**'
+      - 'composeApp/src/androidMain/**'
+      - 'composeApp/src/desktopMain/**'
+      - 'composeApp/compose-desktop.pro'
+      - 'composeApp/proguard-android-rules.pro'
+      - '.gitignore'
+      - 'README.md'
 
 jobs:
   build:
